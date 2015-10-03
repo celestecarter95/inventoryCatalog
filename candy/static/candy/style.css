@@ -1,0 +1,27 @@
+/*
+pink
+color: #FC5555;
+light pink
+color: #FFA097;
+white
+color: #FFFFFF;
+light blue
+color: #D8F4C9;
+blue
+color: #88C2B0;
+*/
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.container {
+	flex: 1;
+}
+
+footer {
+	background-color: #88C2B0;
+	color: #FFFFFF;
+	padding-top: 10px;
+}
