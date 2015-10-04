@@ -11,7 +11,7 @@
 	{% thumbnail category.image "200x200" as im %}
 		<img src"{{ im.url }}" alt="{{ category.name }}">
 	{% endthumbnail %}
-	<a href="{% url 'candy:item_list' category.id %}">
+	<a href="{% url 'candy:categorydetail' category.id %}">
 		<div class="category-list">
 			<h2>{{ category.name }}</h2>
 			<p>{{ category.description }}</p>

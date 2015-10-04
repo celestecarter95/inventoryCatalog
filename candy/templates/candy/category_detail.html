@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block 'title' %} {{ category.name }}{% endblock 'title' %}
+{% block 'content' %}
+
+{% for detailcategory in category.category_group.all%}
+
+<img src="{% static  detailcategory.image  %}" alt="{{ detailcategory.name }}">
+	{% thumbnail detailcategory.image "200x200" as im %}
+		<img src"{{ im.url }}" alt="{{ detailcategory.name }}">
+	{% endthumbnail %}
+	<a href="{% url 'candy:itemdetail' detailcategory.id %}">
+		<div class="category-list">
+			<h2>{{ detailcategory.name }}</h2>
+			<p>{{ detailcategory.description }}</p>
+		</div>
+	</a>
+{% endfor %}
+
+{% endblock 'content' %}

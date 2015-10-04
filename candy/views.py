@@ -12,10 +12,8 @@ class CategoryListView(generic.ListView):
 	template_name = "candy/index.html"
 	model = Category
 
-class ItemListView(generic.ListView):
-	template_name = "candy/item_list.html"
+class CategoryDetailView(generic.DetailView):
 	model = Category
 
 class ItemDetailView(generic.DetailView):
-	template_name = "candy/item_detail.html"
 	model = Item
