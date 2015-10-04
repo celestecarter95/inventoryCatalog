@@ -23,3 +23,4 @@ urlpatterns = [
 	url(r'^', include('candy.urls', namespace='candy')),
     url(r'^admin/', include(admin.site.urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
