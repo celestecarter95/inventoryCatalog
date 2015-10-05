@@ -1,22 +1,8 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
-{% load thumbnail %}
 
 {% block 'title' %} Happiness for the Soul{% endblock 'title' %}
 {% block 'content' %}
 
-{% for category in category_list %}
-
-<img src="{% static  category.image  %}" alt="{{ category.name }}">
-	{% thumbnail category.image "200x200" as im %}
-		<img src"{{ im.url }}" alt="{{ category.name }}">
-	{% endthumbnail %}
-	<a href="{% url 'candy:categorydetail' category.id %}">
-		<div class="category-list">
-			<h2>{{ category.name }}</h2>
-			<p>{{ category.description }}</p>
-		</div>
-	</a>
-{% endfor %}
+{% include "candy/category_list.html" with category_list=category_list %}
 
 {% endblock 'content' %}

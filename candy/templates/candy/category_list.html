@@ -1,0 +1,17 @@
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% for category in category_list %}
+	<a href="{% url 'candy:updatecategory' category.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	<a href="{% url 'candy:deletecategory' category.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+	<img src="{% static  category.image  %}" alt="{{ category.name }}">
+    <a href="{% url 'candy:categorydetail' category.id %}">
+        <div class="category-list">
+            {% thumbnail category.image "200x200" as im %}
+                <img src"{{ im.url }}" alt="{{ category.name }}">
+            {% endthumbnail %}
+            <h2>{{ category.name }}</h2>
+            <p>{{ category.description }}</p>
+        </div>
+    </a>
+{% endfor %}

@@ -3,20 +3,27 @@
 {% load thumbnail %}
 
 {% block 'title' %} {{ category.name }}{% endblock 'title' %}
+{% block 'header' %} {{ category.name }} {% endblock 'header' %}
+
 {% block 'content' %}
 
-{% for detailcategory in category.category_group.all%}
+{% include "candy/category_list.html" with category_list=category.category_group.all %}
 
-<img src="{% static  detailcategory.image  %}" alt="{{ detailcategory.name }}">
-	{% thumbnail detailcategory.image "200x200" as im %}
-		<img src"{{ im.url }}" alt="{{ detailcategory.name }}">
-	{% endthumbnail %}
-	<a href="{% url 'candy:itemdetail' detailcategory.id %}">
-		<div class="category-list">
-			<h2>{{ detailcategory.name }}</h2>
-			<p>{{ detailcategory.description }}</p>
+{% for item in category.item_set.all %}
+	<a href="{% url 'candy:updateitem' item.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a href="{% url 'candy:deleteitem' item.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+	<div class="item-list">
+		{% thumbnail item.image "200x200" as im %}
+			<img src"{{ im.url }}" alt="{{ item.name }}">
+		{% endthumbnail %}
+		<h2>{{ item.name }}</h2>
+		<p>{{ item.description }}</p>
 		</div>
-	</a>
+
 {% endfor %}
+
+{% if not category.item_set.all and not category.category_group.all %}
+	<a href="#">Be the first to add a category or an item in this group!</a>
+{% endif %}
 
 {% endblock 'content' %}
