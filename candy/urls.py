@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.conf.urls.static import static
+from django.conf import settings
 
 from django.views.generic import TemplateView
 from . import views
@@ -14,4 +16,5 @@ urlpatterns = [
 	url(r'^item/add/$', views.CreateItemView.as_view(), name='additem'),
 	url(r'^item/(?P<pk>[0-9]+)/update/$', views.UpdateItemView.as_view(), name='updateitem'),
 	url(r'^item/(?P<pk>[0-9]+)/delete/$', views.DeleteItemView.as_view(), name='deleteitem'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

@@ -1,20 +1,27 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}{% if item %}Update{% else %}Add{% endif %} Item{% endblock %}
+{% block 'header' %} {% if category %} Update {% else %} Add {% endif %} a Category {% endblock 'header' %}
 
 {% block 'content' %}
 
-<h1>{% if item %} Update {% else %} Add {% endif %} a Item</h1>
 
-<form action="." method="post" class="form" role="form">
+<p id="status"></p>
+<form action="." method="post" id="item_form" class="form" role="form">
 	{% csrf_token %}
 	{% for field in form %}
 		<div class="form-group">
 		{{ field.label_tag }}
-		{{ field }}
+		{% ifequal field.auto_id "id_quantity" %}
+			<button id="decrement" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+			{{ field}}
+			<button id="increment" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+		{% else %}
+			{{ field }}
+		{% endifequal %}
 		</div>
 	{% endfor %}
-	<button class="btn btn-default">{% if item %} Update {% else %} Add {% endif %}</button>
+	<button class="btn btn-primary">{% if item %} Update {% else %} Add {% endif %}</button>
 </form>
 
 {% endblock %}

@@ -21,7 +21,10 @@
 
 		<!-- Custom css -->
 		{% load staticfiles %}
-		<link rel="stylesheet" type="text/css" href="{% static 'candy/style.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+		<!-- Custom Ajax -->
+		<script src="{% static 'js/ajax.js' %}"></script>
     </head>
 
     <body>
@@ -39,9 +42,9 @@
 			</div>
 		</nav>
 
-		<div id="title-header">
-			<h1 class="col-sm-offset-4 col-sm-4">{% block 'header' %}Find a Sweet you Love{% endblock 'header' %}</h1>
-		</div>
+			<div id="title-header">
+				<h1 class="col-sm-offset-3 col-sm-6">{% block 'header' %}Find a Sweet you Love{% endblock 'header' %}</h1>
+			</div>
 
 		<div class="container">
 			{% block 'content' %}

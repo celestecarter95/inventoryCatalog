@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}Category Deleted{% endblock %}
+{% block 'header' %} Category Successfully Deleted {% endblock 'header' %}
 
 {% block 'content' %}
-<h1>Category deleted</h1>
+<div id="status" class="alert alert-success" style="display: none;" role="alert"></div>
 
-<p>Categorywas successfully deleted. <a href="{% url 'candy:index' %}">Go back to the list of categories.</a></p>
+<p>Category was successfully deleted. <a href="{% url 'candy:index' %}">Go back to the list of categories.</a></p>
 {% endblock %}

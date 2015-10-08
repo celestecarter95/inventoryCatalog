@@ -1,15 +1,17 @@
 {% load thumbnail %}
 
 {% for category in category_list %}
-	<a href="{% url 'candy:updatecategory' category.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-	<a href="{% url 'candy:deletecategory' category.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+<div class="category">
+	<a class="edit" href="{% url 'candy:updatecategory' category.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	<a class="delete" href="{% url 'candy:deletecategory' category.id %}"><span class="glyphicon glyphicon-trash"></span></a>
     <a href="{% url 'candy:categorydetail' category.id %}">
+		{% thumbnail category.image "200x200" crop="center" as im %}
+			<img class="img-circle" src="{{ im.url }}" alt="{{category.title}}">
+		{% endthumbnail %}
         <div class="category-list">
-            {% thumbnail category.image "200x200" as im %}
-                <img src"{{ im.url }}" alt="{{ category.name }}">
-            {% endthumbnail %}
             <h2>{{ category.name }}</h2>
             <p>{{ category.description }}</p>
         </div>
     </a>
+</div>
 {% endfor %}

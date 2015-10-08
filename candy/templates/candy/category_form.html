@@ -2,11 +2,20 @@
 
 {% block 'title' %}{% if category %}Update{% else %}Add{% endif %} Category{% endblock %}
 
+{% block 'header' %} {% if category %} Update {% else %} Add {% endif %} a Category {% endblock 'header' %}
+
 {% block 'content' %}
 
-<h1>{% if category %} Update {% else %} Add {% endif %} a Category</h1>
+<!--
+<div id="hello">
+  Hello World!
+</div>
+<button id="mybutton" onclick="goodbye()">Say Goodbye</button>
+-->
 
-<form action="." method="post" class="form" role="form">
+<div id="status" class="alert alert-success" style="display: none;" role="alert"></div>
+
+<form action="." method="post" class="form" role="form" id="categoryform">
 	{% csrf_token %}
 	{% for field in form %}
 		<div class="form-group">
@@ -14,7 +23,7 @@
 		{{ field }}
 		</div>
 	{% endfor %}
-	<button class="btn btn-default">{% if category %} Update {% else %} Add {% endif %}</button>
+	<button class="btn btn-primary">{% if category %} Update {% else %} Add {% endif %}</button>
 </form>
 
 {% endblock %}

@@ -1,0 +1,169 @@
+/*
+pink
+color: #FC5555;
+color: rgba(252,85,85,1.0);
+light pink
+color: #FFA097;
+color: rgba(255,160,151,1.0);
+white
+color: #FFFFFF;
+color: rgba(255,255,255,1.0);
+light green
+color: #D8F4C9;
+color: rgba(216,244,201,1.0);
+green
+color: #88C2B0;
+color: rgba(136,194,176,1.0);
+*/
+body {
+	background: url("../img/background1.jpg");
+	background-repeat: repeat-x;
+	font-family: 'Amaranth', sans-serif;
+	font-size: 20px;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.container {
+	flex: 1;
+}
+
+.navbar {
+	background-color: rgba(255,255,255,0);
+	border: none;
+	margin: 0;
+}
+
+.navbar-default .navbar-brand {
+	font-family: 'Merienda', cursive;
+	font-size: 30px;
+	color: rgba(0,0,0,1.0);
+	margin-top: 30px;
+}
+
+#cupcakeicon {
+	float: left;
+}
+
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+	background-color: rgba(136,194,176,1.0);
+	color: rgba(255,255,255,1.0);
+	border-radius: 5px;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: rgba(0,0,0,1.0);
+	margin-top: 30px;
+	text-decoration: underline;
+}
+
+#title-header h1{
+	font-family: 'Merienda', cursive;
+	text-align: center;
+	background-color: rgba(252,85,85,1.0);
+	color: rgba(255,255,255,1.0);
+	padding: 15px;
+	font-size: 30px;
+	border-radius: 5px;
+}
+
+a, a:hover {
+	text-decoration: none;
+	color: rgba(0,0,0,1.0);
+}
+
+.category-list {
+	background-color: rgba(136,194,176,1.0);
+	padding: 20px;
+	border-radius: 5px;
+	margin: 20px 0 40px 90px;
+	min-height: 200px;
+}
+
+.category {
+	clear:both;
+}
+
+img {
+	float:left;
+	margin-right: 20px;
+}
+
+.edit, .delete {
+	float: right;
+	margin: 10px;
+}
+
+.form {
+	background-color: rgba(255,160,151,1.0);
+	padding: 30px 70px;
+	margin-bottom: 40px;
+}
+
+.btn-primary, .btn-delete, .btn-cancel {
+	background-color: rgba(252,85,85,1.0);
+	color: rgba(255,255,255,1.0);
+	padding: 10px 20px;
+	font-size: 20px;
+	border: none;
+}
+
+.btn-cancel {
+	background-color: rgba(136,194,176,1.0);
+	color: rgba(0,0,0,1.0);
+}
+
+.btn-cancel, .btn-delete {
+	margin-bottom: 40px;
+}
+
+input,
+select,
+textarea {
+	display: block;
+	border-radius: 5px;
+	border: 2px inset;
+	width: 95%;
+}
+
+.confirm-delete {
+	text-align: center;
+}
+
+.btn-default, .item-list h6 {
+	float: left;
+}
+
+.item-list {
+	background-color: rgba(252,85,85,1.0);
+	padding: 20px;
+	border-radius: 5px;
+	overflow: scroll;
+	height: 200px;
+	margin-bottom: 40px;
+}
+
+.item {
+	float: left;
+}
+
+.item img {
+	margin-bottom: 10px;
+}
+
+.item-list h6 {
+	font-size: 25px;
+	padding: 3px;
+	margin: 2px;
+}
+
+.item-list, .item-list p {
+	clear: both;
+}
+footer {
+	background-color: rgba(136,194,176,1.0);
+	color: rgba(0,0,0,1.0);
+	padding-top: 10px;
+}

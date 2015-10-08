@@ -10,15 +10,34 @@
 {% include "candy/category_list.html" with category_list=category.category_group.all %}
 
 {% for item in category.item_set.all %}
-	<a href="{% url 'candy:updateitem' item.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-    <a href="{% url 'candy:deleteitem' item.id %}"><span class="glyphicon glyphicon-trash"></span></a>
-	<div class="item-list">
-		{% thumbnail item.image "200x200" as im %}
-			<img src"{{ im.url }}" alt="{{ item.name }}">
-		{% endthumbnail %}
-		<h2>{{ item.name }}</h2>
-		<p>{{ item.description }}</p>
+	<div class="item col-lg-3">
+			{% if item.image %}
+				{% thumbnail item.image "200x200" crop="center" as im %}
+					<img class="col-lg-12 img-circle" src="{{ im.url }}" alt="{{ item.title }}">
+				{% endthumbnail %}
+			{% else %}
+				{% thumbnail category.image "200x200" crop="center" as im %}
+					<img class="col-lg-12 img-circle" src="{{ im.url }}" alt="{{ category.title }}">
+				{% endthumbnail %}
+				
+			{% endif %}
+		<div class="item-list">
+			<a class="edit" href="{% url 'candy:updateitem' item.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+			<a class="delete" href="{% url 'candy:deleteitem' item.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+			<h2>{{ item.name }}</h2>
+			<h6>{{ item.quantity }}</h6>
+<!--
+			<form action="{% url 'candy:updateitem' item.id %}" method="post" class="form-inline" id="quantityform" role="form">
+				{% csrf_token %}
+				{{ form }}
+				<button id="increment" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+				<input id="id_quantity" name="quantity" value="{{ item.quantity }}">
+				<button id="decroment" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+			</form>
+-->
+			<p>{{ item.description }}</p>
 		</div>
+	</div>
 
 {% endfor %}
 
