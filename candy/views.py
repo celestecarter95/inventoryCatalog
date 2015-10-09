@@ -88,6 +88,13 @@ class UpdateItemView(AjaxableResponseMixin, UpdateView):
 	def get_success_url(self):
 		return reverse_lazy('candy:categorydetail', args=(self.object.category.id,))
 
+class UpdateItemQuantityView(AjaxableResponseMixin, UpdateView):
+    model = Item
+    fields = ['quantity']
+
+    def get_success_url(self):
+        return reverse_lazy('candy:categorydetail', args=(self.object.category.id,))
+
 class DeleteItemView(DeleteView):
 	#tempalte_name is "item_confirm_delete.html"
 	model = Item

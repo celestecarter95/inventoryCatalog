@@ -5,6 +5,35 @@
 {% block 'title' %} {{ category.name }}{% endblock 'title' %}
 {% block 'header' %} {{ category.name }} {% endblock 'header' %}
 
+{% block 'extrascripts' %}
+<script>
+// $(function () {
+$(document).ready(function () {
+    $(".quantityform").click(
+		    function (event) {
+                event.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'post',
+                    data: $(this).serialize(),
+                    success: function (data) {
+                            $('#status').text('Successfully updated ').show().fadeOut(5000);
+                    
+                            console.log(data);
+                        },
+                    error: function (xd4, statusText, errorText) {
+                            $('#status').text('Uh oh. Something didn\'t go right.');
+                            console.log("error was " + statusText + " and error text was " + errorText);
+                        },
+                });
+        });
+});
+
+
+});
+</script>
+{% endblock %}
+
 {% block 'content' %}
 
 {% include "candy/category_list.html" with category_list=category.category_group.all %}
@@ -25,21 +54,42 @@
 			<a class="edit" href="{% url 'candy:updateitem' item.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
 			<a class="delete" href="{% url 'candy:deleteitem' item.id %}"><span class="glyphicon glyphicon-trash"></span></a>
 			<h2>{{ item.name }}</h2>
-			<h6>{{ item.quantity }}</h6>
-<!--
-			<form action="{% url 'candy:updateitem' item.id %}" method="post" class="form-inline" id="quantityform" role="form">
+			<form action="{% url 'candy:updateitemquantity' item.id %}" method="post" class="form-inline" id="quantityform" role="form">
 				{% csrf_token %}
 				{{ form }}
-				<button id="increment" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
-				<input id="id_quantity" name="quantity" value="{{ item.quantity }}">
-				<button id="decroment" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span></button>
+				<input style="width:55px; float:left;" type="number"  name="quantity" value="{{ item.quantity }}">
+				<input style="width:80px; float:left;" type="submit" value="Update">
 			</form>
--->
 			<p>{{ item.description }}</p>
 		</div>
 	</div>
 
 {% endfor %}
+
+<!--
+<h1>Current Items in {{ category.name }}</h1>
+<div id="status" class="alert alert-success" style="display: none;" role="alert"></div>
+{% for item in category.item_set.all %}
+        <form action="{% url 'candy:updateitemquantity' item.id %}" method="post" class="submitqty">
+            {% csrf_token %}
+            <table class="table">
+                <tr>
+		    <td colspan="1">{{ item.name }}
+						<input value="{{ item.quantity }}" type="number" name="quantity" min="0" style="width:50px; margin-left:10px;">
+				<input type="submit" value="Update" style="margin-left:-4px;">
+                        <a href="{% url 'candy:updateitem' item.id %}" style="margin-left:10px;"><span class="glyphicon glyphicon-edit"></span></a>
+			<a href="{% url 'candy:deleteitem' item.id %}" style="margin-left:10px;"><span style="color:red" class="glyphicon glyphicon-remove"></span></a>
+		    </td>
+                </tr>
+            </table>
+        </form>
+
+
+{% empty %}
+    <p>There are no items. Want to <a href="{% url 'candy:additem' %}">add one?</a></p>
+
+{% endfor %}
+-->
 
 {% if not category.item_set.all and not category.category_group.all %}
 	<a href="#">Be the first to add a category or an item in this group!</a>

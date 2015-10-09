@@ -17,9 +17,12 @@ class Category(models.Model):
 class Item(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.TextField()
-	quantity = models.IntegerField()
+	quantity = models.IntegerField(default=0)
 	image = models.ImageField(upload_to="pics/%Y/%m/%d", blank=True, null=True)
 	category = models.ForeignKey(Category)
 
 	def __unicode__(self):
 		return self.name
+
+	def get_absolute_url(self):
+		return reverse('candy:updateitem', kwargs={'pk':self.pk})

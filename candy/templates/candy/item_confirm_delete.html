@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}Delete {{ item.name }}?{% endblock %}
+{% block 'header' %} Delete Item {{ item.name }}{% endblock 'header' %}
 
 {% block 'content' %}
-<h1>Delete Item {{ item.name }}</h1>
-<p>Are you sure you want to delete {{ item.name }}</p>
-<form action"{% url 'candy:deleteitem' item.id %}" method="POST">
-	{% csrf_token %}
-	{{ form }}
-	<button class="btn btn-success">Delete</button>
-</form>
-<a href="{% url 'candy:itemdetail' item.id %}" class="btn btn-default">Cancel</a>
+<div class="confirm-delete">
+	<p>Are you sure you want to delete {{ item.name }}?</p>
+	<form action"{% url 'candy:deleteitem' item.id %}" method="POST">
+		{% csrf_token %}
+		{{ form }}
+		<button class="btn btn-delete">Delete</button>
+		<a href="{% url 'candy:categorydetail' item.category.id %}" class="btn btn-cancel">Cancel</a>
+	</form>
+</div>
 {% endblock %}

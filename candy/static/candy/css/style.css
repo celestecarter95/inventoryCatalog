@@ -162,6 +162,16 @@ textarea {
 .item-list, .item-list p {
 	clear: both;
 }
+
+#id_quantity {
+	width: 20%;
+	float: left;
+}
+
+label {
+	float: left;
+}
+
 footer {
 	background-color: rgba(136,194,176,1.0);
 	color: rgba(0,0,0,1.0);

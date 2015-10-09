@@ -14,6 +14,7 @@ urlpatterns = [
 	url(r'^category/(?P<pk>[0-9]+)/delete/$', views.DeleteCategoryView.as_view(), name='deletecategory'),
 	url(r'^category/delete/success/$', TemplateView.as_view(template_name='candy/success.html'), name='deletecategorysuccess'),
 	url(r'^item/add/$', views.CreateItemView.as_view(), name='additem'),
+	url(r'^item/(?P<pk>[0-9]+)/updatequantity/$', views.UpdateItemQuantityView.as_view(), name="updateitemquantity"),
 	url(r'^item/(?P<pk>[0-9]+)/update/$', views.UpdateItemView.as_view(), name='updateitem'),
 	url(r'^item/(?P<pk>[0-9]+)/delete/$', views.DeleteItemView.as_view(), name='deleteitem'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
